@@ -1,0 +1,534 @@
+@mixin innerShadow {
+  box-shadow:
+    inset 1px 1px #ffffff,
+    inset -1px -1px #808080,
+    1px 1px #000000;
+}
+@mixin outerShadow {
+  box-shadow:
+    inset 3px 3px #808080,
+    inset 1px 1px #000000,
+    inset -1px -1px #ffffff;
+}
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'old-pc' {
+    @media screen and (max-width: 1400px) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media screen and (max-width: 1000px) {
+      @content;
+    }
+  } @else if $breakpoint == 'mobile' {
+    @media screen and (max-width: 640px) {
+      @content;
+    }
+  } @else if $breakpoint == 'mini' {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+}
+#boot-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('../images/sky2.png') center center / cover no-repeat;
+  z-index: 99999;
+  transition: opacity 0.3s ease;
+  .boot-screen__img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .window-logo {
+      width: 350px;
+    }
+    .window-text {
+      width: 350px;
+    }
+  }
+  .progress-bar {
+    width: 200px;
+    height: 16px;
+    border: 2px solid #000000;
+    padding: 2px;
+    margin-top: 20px;
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background-color: #000000;
+      animation: loading 2s linear forwards;
+    }
+  }
+  @keyframes loading {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  #boot-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+#portfolio {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  padding-bottom: 35px;
+  overflow: hidden;
+  background-color: #007f7d;
+}
+.content {
+  position: relative;
+  height: 100%;
+  padding: 20px 40px;
+  .content__inner {
+    width: 100%;
+    height: 100%;
+  }
+}
+.content-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-content: start;
+  flex-wrap: wrap;
+  gap: 50px;
+  height: 100%;
+  @include responsive(mobile) {
+    gap: 20px;
+  }
+  .content-buttons__item {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    @include responsive(mobile) {
+      width: 60px;
+    }
+    .content-buttons__button {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 120px;
+      padding: 5px;
+      gap: 10px;
+      i {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-size: cover;
+        @include responsive(mobile) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      span {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
+        font-size: 1.4rem;
+        color: #ffffff;
+        @include responsive(mobile) {
+          font-size: 1.3rem;
+        }
+      }
+      &:hover:before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        // background: rgba(255, 255, 255, 0.1);
+        background: rgba(3, 44, 251, 0.15);
+        border: 1px dashed #d0d0d0;
+      }
+
+      &:hover span {
+        display: block;
+        overflow: visible;
+      }
+    }
+  }
+}
+.content-info {
+  .content__list {
+    .content__item {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      padding: 2px;
+      background-color: #c0c0c0;
+      box-shadow:
+        inset 2px 2px #ffffff,
+        inset -2px -2px #808080,
+        1px 1px #000000;
+      transition: all 0.3s ease-in;
+      opacity: 1;
+      &.min {
+        top: 100%;
+        left: 0;
+        transform: translate(-100%, 0);
+        opacity: 0;
+        visibility: hidden;
+      }
+      &.max {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 2px);
+        transform: none;
+      }
+      @include responsive(old-pc) {
+        width: 85%;
+      }
+      @include responsive(tablet) {
+        width: 100%;
+        height: calc(100% - 2px);
+      }
+      @include responsive(mobile) {
+        top: 0;
+        left: 0;
+        transform: none;
+      }
+    }
+  }
+}
+.top {
+  background: linear-gradient(to right, #010a86, #0f7fcd);
+  .top__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 5px;
+    .top__title {
+      padding-left: 5px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .top__buttons {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      gap: 2px;
+      .top__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        background-color: #c0c0c0;
+        font-size: 0;
+        line-height: 0;
+        @include innerShadow();
+        cursor: pointer;
+        @include responsive(tablet) {
+          &.maximmize-btn {
+            display: none;
+          }
+        }
+        &.close-btn {
+          background-color: red;
+        }
+        i {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.bottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  height: 100%;
+  @include responsive(tablet) {
+    height: calc(100% - 31px);
+  }
+  .bottom__image {
+    width: 30%;
+    height: 80%;
+    overflow-y: scroll;
+    @include responsive(old-pc) {
+      width: 20%;
+    }
+    @include responsive(tablet) {
+      display: none;
+    }
+    img {
+      padding: 2px;
+      width: 90%;
+      @include outerShadow();
+    }
+  }
+  .bottom__content {
+    width: 63%;
+    @include responsive(old-pc) {
+      width: 75%;
+    }
+    @include responsive(tablet) {
+      width: 100%;
+    }
+    @include responsive(mobile) {
+      overflow-y: scroll;
+    }
+    .content__title {
+      margin-bottom: 15px;
+      font-size: 2rem;
+      font-weight: 600;
+      @include responsive(old-pc) {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+      .content__date {
+        margin-left: 10px;
+        color: #888888;
+      }
+    }
+    .content__intro {
+      font-size: 1.35rem;
+      @include responsive(old-pc) {
+        font-size: 1.2rem;
+      }
+    }
+    .content-detail {
+      .content-detail__subject {
+        margin: 10px 0 5px;
+        font-weight: 600;
+        font-size: 1.5rem;
+        @include responsive(old-pc) {
+          margin: 5px 0 3px;
+          font-size: 1.3rem;
+        }
+      }
+      .content-detail__list {
+        font-size: 1.3rem;
+        @include responsive(old-pc) {
+          font-size: 1.2rem;
+        }
+        .content-detail__item {
+          list-style-type: square;
+        }
+      }
+    }
+    .content__link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+      @include responsive(mobile) {
+        display: block;
+      }
+      .demo-live {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        @include responsive(mobile) {
+          display: block;
+          margin-top: 10px;
+        }
+        strong {
+          margin-right: 5px;
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: red;
+        }
+      }
+      a {
+        padding: 5px 10px;
+        background-color: #fde301;
+        font-size: 1.4rem;
+        @include innerShadow();
+        @include responsive(old-pc) {
+          padding: 2px 5px;
+        }
+      }
+    }
+  }
+}
+.task-bar {
+  gap: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  padding: 3px;
+  background-color: #c0c0bf;
+  font-size: 1.4rem;
+  font-weight: 500;
+  box-shadow: inset 0 1px 0 #ffffff;
+  .task-bar__start {
+    height: 100%;
+    .start-btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 100%;
+      @include innerShadow();
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        background: url('../images/window.png') center center / cover no-repeat;
+      }
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: -6px;
+        width: 2px;
+        height: 20px;
+        transform: translateY(-50%);
+        background-color: #c2c1c1;
+        box-shadow: 1px 1px 0 #808080;
+      }
+      &:active {
+        @include outerShadow();
+      }
+      @include responsive(old-pc) {
+        font-size: 1.3rem;
+      }
+    }
+    .start-content {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: 350px;
+      margin-bottom: 2px;
+      padding: 30px;
+      background-color: #c0c0bf;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 2.5rem;
+      @include innerShadow();
+      @include responsive(old-pc) {
+        width: 380px;
+        padding: 5px 20px 15px;
+        font-size: 1.3rem;
+      }
+      @include responsive(mobile) {
+        width: 100%;
+        padding: 20px;
+        height: calc(100dvh - 30px);
+        overflow-y: scroll;
+      }
+      &.active {
+        display: block;
+      }
+      img {
+        width: 80px;
+      }
+    }
+  }
+  .task-bar__list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+    .task-bar__item {
+      height: 100%;
+      @include responsive(old-pc) {
+        width: auto;
+      }
+      .task-bar__button {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        height: 100%;
+        @include innerShadow();
+        @include responsive(old-pc) {
+          padding: 0 5px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 1.2rem;
+        }
+        @include responsive(tablet) {
+          padding: 0 15px;
+          font-size: 0;
+          line-height: 0;
+        }
+        i {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+          background-position: center center;
+          background-size: cover;
+          @include responsive(old-pc) {
+            margin-right: 3px;
+          }
+          @include responsive(tablet) {
+            width: 15px;
+            height: 15px;
+            margin-right: 0;
+          }
+        }
+      }
+      &.active .task-bar__button {
+        @include outerShadow();
+      }
+    }
+  }
+  .task-bar__date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    height: calc(100% - 6px);
+    padding: 0 25px;
+    transform: translateY(-50%);
+    text-align: right;
+    box-shadow:
+      inset 1px 1px #000000,
+      inset -1px -1px #ffffff;
+    &:before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: -8px;
+      width: 2px;
+      height: 20px;
+      transform: translateY(-50%);
+      background-color: #c2c1c1;
+      box-shadow: 1px 1px 0 #808080;
+    }
+    @include responsive(tablet) {
+      padding: 0 10px;
+    }
+  }
+}
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}

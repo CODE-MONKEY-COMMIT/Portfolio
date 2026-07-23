@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORTFOILO</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/content.css" />
+  </head>
+  <body>
+    <main>
+      <section id="boot-screen">
+        <div class="boot-screen__img">
+          <img
+            src="./images/window-logo.svg"
+            alt="윈도우 로고"
+            class="window-logo"
+          />
+          <img
+            src="./images/window-text.png"
+            alt="윈도우 텍스트"
+            class="window-text"
+          />
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+      <section class="portfolio" id="portfolio">
+        <div class="content">
+          <div class="content__inner">
+            <ul class="content-buttons"></ul>
+            <div class="content-info">
+              <div class="content__list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="task-bar">
+          <div class="task-bar__start">
+            <button class="start-btn">시작</button>
+            <div class="start-content">
+              <img src="./images/mouse.webp" alt="생쥐" />
+              &lt;README.TXT&gt;<br /><br />
+              안녕하세요.<br />웹퍼블리셔 지원자 현진명입니다.<br /><br />
+              포트폴리오를 90년대 마이크로소프트 윈도우 스타일로
+              제작해보았습니다.<br /><br />
+              혼자서 만든 세 개의 프로젝트, <br />공공기관 중심의 실무 프로젝트
+              경험 등을 각각 아이콘 안에 담았습니다. <br />깃허브와 데모 라이브
+              페이지 링크를 통해 보다 자세한 내용을 확인하실 수 있습니다.<br /><br />감사합니다.
+              (- -) (_ _) (- -)
+            </div>
+          </div>
+          <ul class="task-bar__list"></ul>
+          <div class="task-bar__date"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+<script src="./js/content.js"></script>
