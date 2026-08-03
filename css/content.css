@@ -438,6 +438,7 @@
   font-weight: 600;
   line-height: 2.5rem;
   box-shadow: inset 1px 1px #ffffff, inset -1px -1px #808080, 1px 1px #000000;
+  z-index:100;
 }
 @media screen and (max-width: 1400px) {
   .task-bar .task-bar__start .start-content {
