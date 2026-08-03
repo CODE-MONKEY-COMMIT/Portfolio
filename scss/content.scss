@@ -428,6 +428,7 @@
       font-size: 1.4rem;
       font-weight: 600;
       line-height: 2.5rem;
+      z-index:100;
       @include innerShadow();
       @include responsive(old-pc) {
         width: 380px;
